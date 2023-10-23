@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>猜數字遊戲</title>
+    <style>
+        body {
+            background-color: #4158D0;
+            background-image: linear-gradient(90deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+
+        }
+
+        button {
+            display: block;
+            margin: 200px auto;
+            padding: 10px 30px;
+            font-weight: 500;
+            letter-spacing: 4px;
+            color: rgb(255, 255, 255);
+            background-color: transparent;
+            border: 2px solid rgb(255, 255, 255);
+            border-radius: 10px;
+            animation: scaleAnimation 0.5s infinite alternate linear;
+            /* s 是動畫的持續時間，您可以按需調整 */
+        }
+
+        button:hover {
+            color: #4158D0;
+            border: 2px solid #4158D0;
+            ;
+        }
+
+        /* button:hover {
+            transform: scale(1.5);
+            transition: 0.5s;
+        } */
+
+        /* css動畫 */
+        @keyframes scaleAnimation {
+            0% {
+                transform: scale(1);
+            }
+
+            100% {
+                transform: scale(1.5);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <button id="game">玩遊戲</button>
+    <script>
+        function getJackpot(min = 0, max = 0) {
+            const jackpot = Math.floor(Math.random() * (max - min + 1) + min)
+            for (let i = 1; i < 10; i++) {
+                let num = +prompt(`請輸入${min}~${max}的其中一個數字`)
+                if (num > jackpot) {
+                    alert(`猜的數字太大了，${10 - i}次`)
+                }
+                else if (num < jackpot) {
+                    alert(`猜的數字太小了，${10 - i}次`)
+                }
+                else if (num === jackpot) {
+                    alert(`猜對了，數字是${jackpot}`)
+                    break
+                }
+            }
+            alert(`遊戲結束，數字是[${jackpot}]`)
+
+            console.log(jackpot);
+        }
+        document.querySelector('#game').addEventListener('click', function () {
+            getJackpot(1, 100)
+        })
+
+    </script>
+</body>
+
+</html>
